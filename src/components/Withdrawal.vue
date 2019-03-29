@@ -55,8 +55,9 @@ export default {
   methods:{
     makeWithdrawal(amount){
         console.log(amount);
-        const url = "http://localhost:3002/api/org.acme.charity.Withdraw";
-        axios.post(url,{"amount":amount}).then(function(status){ 
+        const url = "http://localhost:3001/api/org.acme.charity.Withdraw";
+        var documentID_num = 'W' + Math.floor((Math.random() * 99999) + 10000).toString();
+        axios.post(url,{"amount":amount, "documentID": documentID_num}).then(function(status){ 
             if(status.status == 200){
                 alert("Your withdrawal of $"+amount+ " has been recorded, please wait for confirmation from the Treasury, before it is reflected in 'View Withdrawals'");
             }
@@ -74,7 +75,7 @@ export default {
         this.showWithdrawals=true;
     },
     goToCharity(){
-      router.replace("Charity");
+      this.$router.replace({ name: 'Charity', params: { id: this.id}});
     },
     logout: function() {
       //console.log("pushed")

@@ -7,6 +7,8 @@ import Donor from "@/components/Donor.vue";
 import Signup from "@/components/Signup.vue"
 import Withdrawal from "@/components/Withdrawal.vue"
 import Distribute from "@/components/Distribute.vue"
+import Treasury from "@/components/Treasury.vue"
+
 
 
 Vue.use(Router);
@@ -51,6 +53,11 @@ export default new Router({
       path: "/Distribute/:id",
       name: "Distribute",
       component: Distribute 
+    },
+    {
+      path: "/Treasury/:id",
+      name: "Treasury",
+      component: Treasury 
     }
   ]
 });

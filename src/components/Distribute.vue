@@ -54,9 +54,10 @@ export default {
   methods:{
     makeDistribution(amount, beneficiary){
         console.log(amount);
-        const url = "http://localhost:3002/api/org.acme.charity.Distribute";
+        const url = "http://localhost:3001/api/org.acme.charity.Distribute";
         console.log("org.acme.charity.Beneficiary#"+beneficiary);
-        axios.post(url,{"amount":amount,"beneficiary": "org.acme.charity.Beneficiary#"+beneficiary}).then(function(status){ 
+        var documentID_num = 'B' +Math.floor((Math.random() * 99999) + 10000).toString();
+        axios.post(url,{"amount":amount, "documentID": documentID_num,"beneficiary": "org.acme.charity.Beneficiary#"+beneficiary}).then(function(status){ 
             if(status.status == 200){
                 alert("Your distribution of $"+amount+ " to beneficiary "+beneficiary+" has been recorded, please wait for confirmation from the Treasury, before it is reflected in 'View Distributions'");
             }
@@ -74,7 +75,7 @@ export default {
         this.showDistributions=true;
     },
     goToCharity(){
-      router.replace("Charity");
+      this.$router.replace({ name: 'Charity', params: { id: this.id}});
     },
     logout: function() {
       //console.log("pushed")

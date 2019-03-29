@@ -21,10 +21,10 @@ export default {
   },
   methods: {
     goToWithdrawal(){
-      router.replace("Withdrawal");
+      this.$router.replace({ name: 'Withdrawal', params: { id: this.id}});
     },
     goToDistribute(){
-      router.replace("Distribute");
+      this.$router.replace({ name: 'Distribute', params: { id: this.id}});
     },
     logout: function() {
       //console.log("pushed")

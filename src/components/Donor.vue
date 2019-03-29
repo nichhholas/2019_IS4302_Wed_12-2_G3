@@ -97,10 +97,11 @@ export default {
   methods:{
     makeDonation(amount){
         console.log(amount);
-        const url = "http://localhost:3001/api/org.acme.charity.Donate";
-        axios.post(url,{"amount":amount}).then(function(status){ 
+        const url = "http://localhost:3002/api/org.acme.charity.Donate";
+        var documentID_num = 'D' +Math.floor((Math.random() * 99999) + 10000).toString();
+        axios.post(url,{"amount":amount, "documentID": documentID_num}).then(function(status){ 
             if(status.status == 200){
-                alert("Your donation of $"+amount+ " has been recorded, please wait for confirmation from the Treasury, before it is reflected in 'My Donations'");
+                alert("Your donation of $"+amount+ " has been recorded, please wait for confirmation from the Treasury, before it is reflected in 'View Donations'");
             }
         }).catch(function(error){
             alert("An error occurred, your donation was not recorded");
