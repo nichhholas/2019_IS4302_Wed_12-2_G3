@@ -92,6 +92,9 @@
             </tr>
         </tbody>
         </table>
+        <br><br>
+            <button @click="logout" >Log Out</button>
+
     </div>
 </template>
 
@@ -99,6 +102,7 @@
 // eslint-disable-file no-use-before-define 
 
 import axios from 'axios'
+import router from '@/router/index.js'
 export default {
     data() {
         return {

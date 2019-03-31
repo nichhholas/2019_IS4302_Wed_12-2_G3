@@ -10,7 +10,7 @@
     <h4>Current Fundraising goal</h4>
     <b-progress :max="max" height="2rem" :striped="'striped'">
       <b-progress-bar :value="value" :striped="'striped'">
-        Progress: <strong>{{ value.toFixed(3) }} / {{ max }}</strong>
+        Progress: <strong>{{ value }} / {{ max }}</strong>
       </b-progress-bar>
     </b-progress><br>
     </div>
@@ -84,15 +84,19 @@ export default {
         id: this.$route.params.id,
         ownDonations: null,
         showOwnDonations: false,
-        max: 1000,
+        max: 10000,
         value: 750,
         amount: 0,
+        treasury: null,
       distributions: null,
       myDonation: [
         { date: "1/1/19", Amount: 100 },
         { date: "1/2/19", Amount: 100 }
       ]
     };
+  },
+  mounted(){
+    this.fetchTreasury();
   },
   methods:{
     makeDonation(amount){
@@ -134,6 +138,17 @@ export default {
     logout: function() {
       //console.log("pushed")
       this.$router.push({ name: "Login" });
+    },
+    async fetchTreasury(){
+      console.log("fetch treasury");
+      await fetch("http://localhost:3001/api/org.acme.charity.Treasury")
+      .then(response => response.json())
+      .then((data)=>(
+          this.treasury = data
+          ))
+      this.value = this.treasury[0]["funds"];
+      console.log(this.treasury[0]);
+
     }
   }
 };

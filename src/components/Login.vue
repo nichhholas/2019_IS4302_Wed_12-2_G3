@@ -2,31 +2,33 @@
   <div>
     <div class="login-for-beneficiaries">
       <h3>Sign in for Beneficiaries</h3>
-      <input v-model="id" placeholder="Email">
+      <input type="text" v-model= "account.beneficiary_ID" placeholder="ID">
       <br>
-      <input type="password" placeholder="password">
+      <input type="password" v-model= "account.beneficiary_password" placeholder="password">
       <br>
-      <button @click="loginB">Log In</button>
+      <a> {{beneficiary_login_response}}</a>
+      <br>
+      <button @click="login">Log In</button>
     </div>
     <br>
 
     <div class="login-for-donors">
       <h3>Sign in for Donors</h3>
-      <input v-model="id" placeholder="Email">
+      <input type="text" v-model= "donor_ID" placeholder="ID">
       <br>
-      <input type="password" placeholder="password">
+      <input type="password" v-model= "donor_password" placeholder="password">
       <br>
-      <button @click="loginD">Log In</button>
+      <button @click="login">Log In</button>
     </div>
     <br>
 
     <div class="login-for-charity">
       <h3>Sign in for Charity</h3>
-      <input v-model="id" placeholder="Email">
+      <input type="text" v-model="charityOrg_ID" placeholder="ID">
       <br>
-      <input type="password" placeholder="password">
+      <input type="password" v-model="charityOrg_password" placeholder="password">
       <br>
-      <button @click="loginC">Log In</button>
+      <button @click="login">Log In</button>
       <p>
         You don't have an account ? You can
         <router-link to="Signup">create one</router-link>
@@ -35,16 +37,23 @@
   </div>
 </template>
 
-
 <script>
-
+import axios from 'axios'
+console.log('Login.vue-Is this working');
 export default {
   name: "Login",
-  components:{
-  },
   data() {
     return {
-      id: null,
+      account:{
+
+      },
+      //beneficiary_ID: '',
+      //beneficiary_password: '',
+      donor_ID: '',
+      donor_password: '',
+      charityOrg_ID: '',
+      charityOrg_password: '',
+      beneficiary_login_response: '',
     };
   },
   methods: {
@@ -57,6 +66,22 @@ export default {
     },
     loginC: function() {
       this.$router.replace({ name: 'Charity', params: { id: this.id}});
+    },
+    login(){
+        let uri = 'http://localhost:3000/';
+        axios.post(uri, this.account).then((response) => {
+          console.log("login vue")
+          console.log(response.data);
+          if (response["data"] == "Wrong memberID" || response["data"] == "Wrong Password"){
+            //this.account = null;
+            this.beneficiary_login_response = 'Wrong memberID/Password'
+            this.$router.push({name: 'Login'})
+            
+          }else{
+            this.account = response.data;
+            this.$router.push({ name: 'Beneficiary', params: { id: this.account.beneficiary_ID}})
+          }
+        })
     }
   }
 };
@@ -83,3 +108,16 @@ p a {
   cursor: pointer;
 }
 </style>
+
+methods: {
+    loginB: function() {
+      //console.log("pushed")
+      this.$router.replace({ name: 'Beneficiary', params: { id: this.id}});
+    },
+    loginD: function() {
+      this.$router.replace({ name: 'Donor', params: { id: this.id}});
+    },
+    loginC: function() {
+      this.$router.replace({ name: 'Charity', params: { id: this.id}});
+    }
+  }
