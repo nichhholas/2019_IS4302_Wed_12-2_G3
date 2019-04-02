@@ -1,8 +1,9 @@
 <template>
   <div id="app">
     <h3>Distribute</h3>
-    <input v-model="amount">
-    <button v-on:click="makeDistribution(amount)"> Distribute </button> <br><br>
+    <input v-model="amount" size="25" placeholder="Amount"><br>
+    <input v-model="beneficiary" size="25" placeholder="Beneficiary ID"><br>
+    <button v-on:click="makeDistribution(amount,this.beneficiary)"> Distribute </button> <br><br>
     <button v-on:click="fetchDistributions()">View Distributions</button>
     <br>
     <table id="firstTable" class="center" v-if="showDistributions"> 
@@ -68,12 +69,13 @@ export default {
   name: 'Distribute',
   data() {
     return{
-        amount: 0,
+        amount: null,
         distributions: null,
         showDistributions: false,
         id: this.$route.params.id,
         showRejectedDistributions: false,
         rejectedDistributions: null,
+        beneficiary: null,
     }
   },
   components: {
