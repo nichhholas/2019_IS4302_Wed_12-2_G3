@@ -1,9 +1,9 @@
 <template>
   <div class="sign-up">
       <p> Let's create a new account</p><br>
-      <input type="text" placeholder="Email" class="form-box"><br>
-      <input type="password" placeholder="password" class="form-box"><br>
-      <button> Sign Up </button><br>
+      <input type="text" placeholder="Email" v-model="id" class="form-box"><br>
+      <input type="password" placeholder="password" v-model="password" class="form-box"><br>
+      <v-btn v-on:click="register(this.id)"> Sign Up </v-btn><br>
       <span>Or Return to <router-link to="/"> Login page</router-link></span>
 
 
@@ -14,9 +14,27 @@
 export default {
   name: "Signup",
   data() {
-    return {};
+    return {
+      id:null,
+      password:null
+    };
   },
   methods: {
+    async register(id){
+        console.log(id);
+        const url = "http://localhost:3004/api/org.acme.charity.Donor";
+        axios.post(url,{
+          "$class": "org.acme.charity.Donor",
+          "Id": id,
+          "funds": 0
+        }).then(function(status){ 
+            if(status.status == 200){
+                alert("Your account has been created");
+            }
+        }).catch(function(error){
+            alert("An error occurred, your account was not created");
+        });
+    },
   }
 };
 </script>
