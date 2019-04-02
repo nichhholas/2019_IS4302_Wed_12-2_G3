@@ -44,6 +44,32 @@
       </tbody>
     </table>
     <br>
+    <h4>All Rejected Donations</h4>
+    <button @click="fetchRejected()"> Show Rejected Donations </button><br>
+    <table id="firstTable" class="center" v-if="showRejectedDonations">
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>DocumentID</th>
+          <th>From</th>
+          <th>Treasury</th>
+          <th>Amount</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="row in this.rejectedDonations" :key="row.transactionId">
+          <td>{{row.type}}</td>
+          <td>{{row.documentID}}</td>
+          <td>{{row.creator}}</td>
+          <td>{{row.treasury}}</td>
+          <td>{{row.amount}}</td>
+          <td>{{row.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br><br>
+
     <h4>All Transactions</h4>
     <button @click="fetchDistributions"> Show Transactions </button><br>
     <table id="allTxn" class="allTxn">
@@ -67,6 +93,7 @@
       </tbody>
     </table>
     <br>
+
     <div class="wrapper"><br>
       <!-- <button>Donate</button><br><br> -->
       <button @click="logout" >Log Out</button>
@@ -128,6 +155,15 @@ export default {
           this.ownDonations = data
           ))
         this.showOwnDonations = true;
+    },
+    async fetchRejected(){
+      var url = "http://localhost:3001/api/org.acme.charity.FinancialRecord?filter=%7B%22where%22%3A%7B%22status%22%3A%22Denied%22%2C%20%22creator%22%3A%22resource%3Aorg.acme.charity.Donor%23"+this.id+"%22%7D%7D"
+      await fetch(url)
+      .then(response => response.json())
+      .then((data)=>(
+          this.rejectedDonations = data
+          ))
+        this.showRejectedDonations = true;
     },
     showDonation: function(){
       document.getElementById("donationTable").style.display="inline-table";

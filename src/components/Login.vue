@@ -69,6 +69,7 @@ export default {
     },
     login(){
         let uri = 'http://localhost:3000/';
+        console.log(this.account.beneficiary_ID)
         axios.post(uri, this.account).then((response) => {
           console.log("login vue")
           console.log(response.data);

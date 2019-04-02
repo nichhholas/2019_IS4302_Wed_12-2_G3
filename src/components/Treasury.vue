@@ -36,8 +36,8 @@
             <td>{{row.amount}}</td>
             <td>{{row.status}}</td>
             <td>
-            <button v-on:click="confirmFinancialRecord('Successful',row.documentID)"> Confirm </button>
-            <button v-on:click="confirmFinancialRecord('Denied',row.documentID)"> Reject </button>
+            <button v-if="row.status=='Pending'" v-on:click="confirmFinancialRecord('Successful',row.documentID)"> Confirm </button>
+            <button v-if="row.status=='Pending'" v-on:click="confirmFinancialRecord('Denied',row.documentID)"> Reject </button>
             </td>
             </tr>
         </tbody>

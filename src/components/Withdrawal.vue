@@ -30,6 +30,33 @@
     </table>
     <br>
     <br>
+    <button v-on:click="fetchRejected()">View Rejected Withdrawals</button> <br>
+    <table id="firstTable" class="center" v-if="showRejectedWithdrawals"> 
+    
+      <thead>
+        <tr>
+          <th>Type</th>
+          <th>DocumentID</th>
+          <th>From</th>
+          <th>Treasury</th>
+          <th>Amount</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr v-for="row in this.withdrawals" :key="row.transactionId">
+          <td>{{row.type}}</td>
+          <td>{{row.documentID}}</td>
+          <td>{{row.creator}}</td>
+          <td>{{row.treasury}}</td>
+          <td>{{row.amount}}</td>
+          <td>{{row.status}}</td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+
     <button v-on:click="goToCharity()">Back</button>
     <button @click="logout" >Log Out</button>
   </div>
@@ -47,6 +74,8 @@ export default {
         amount: 0,
         withdrawals: null,
         showWithdrawals: false,
+        rejectedWithdrawals: null,
+        showRejectedWithdrawals: false,
         id: this.$route.params.id,
     }
   },
@@ -73,6 +102,15 @@ export default {
           this.withdrawals = data
           ))
         this.showWithdrawals=true;
+    },
+    async fetchRejected(){
+      console.log("fetch rejected");
+      await fetch("http://localhost:3002/api/org.acme.charity.FinancialRecord?filter=%7B%22where%22%3A%7B%22status%22%3A%20%22Denied%22%2C%20%22type%22%3A%22Withdrawal%22%7D%7D")
+      .then(response => response.json())
+      .then((data)=>(
+          this.rejectedWithdrawals = data
+          ))
+        this.showRejectedWithdrawals=true;
     },
     goToCharity(){
       this.$router.replace({ name: 'Charity', params: { id: this.id}});
