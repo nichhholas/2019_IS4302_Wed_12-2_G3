@@ -16,7 +16,8 @@
     "express": "^4.16.4",
     "joi": "^14.3.1",
     "mysql": "^2.16.0",
-    "sql": "^0.78.0"
+    "sql": "^0.78.0",
+    "vue-axios": "^2.1.4"
   },
   "devDependencies": {
     "nodemon": "^1.18.10"

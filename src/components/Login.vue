@@ -34,9 +34,9 @@
       <section>
         <v-layout column wrap class="my-5" align-center>
           <h3>Sign in Page</h3>
-          <input type="text" placeholder="Email">
+          <input type="text" v-model= "account.memberID" placeholder="Email">
           <br>
-          <input type="password" placeholder="password">
+          <input type="password" v-model= "account.password" placeholder="password">
           <br>
           <div class="form-group">
             <label for="sel1">Choose the type of participant you are:</label>
@@ -46,7 +46,7 @@
               <option value="Charity">Charity</option>
               <option value="Treasury">Treasury</option>
             </select>
-            <button @click="loginB">Log in</button>
+            <button @click="login">Log in</button>
           </div>
 
           <v-flex xs12>
@@ -116,9 +116,11 @@ export default {
   name: "Login",
   data() {
     return {
-      account: {},
+      account: {
+
+      },
       login_response: "",
-      title: "Chainrity",
+      title: "CHAinRITY",
       imageLink: {
         sub_main:
           "https://www.runsociety.com/wp-content/uploads/2018/04/Run-and-Raisin-2018-Singapore-thumb-960x540.jpg"
@@ -143,6 +145,7 @@ export default {
       var choice = e.options[e.selectedIndex].value;
       this.account.role = choice;
       console.log(this.account.role);
+      console.log("it's old")
       console.log(this.account.memberID);
       this.axios.post(uri, this.account).then(response => {
         console.log("login vue");
@@ -163,6 +166,7 @@ export default {
         } else {
           this.account = response.data;
           console.log(choice);
+          console.log("this.account.memberID");
           this.$router.push({
             name: choice,
             params: { id: this.account.memberID }

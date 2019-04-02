@@ -3,7 +3,7 @@
     <h3>Make Distribution</h3>
     <input v-model="amount" size="25" placeholder="Amount"><br>
     <input v-model="beneficiary" size="25" placeholder="Beneficiary ID"><br>
-    <button v-on:click="makeDistribution(amount,beneficiary)"> Distribute </button> <br><br>
+    <v-btn depressed small colour='primary' v-on:click="makeDistribution(amount,beneficiary)"> Distribute </v-btn> <br><br>
 
     <h3>Total Distributions</h3>
     <p>{{calculateDistributions}}</p>
@@ -107,8 +107,8 @@
   </div>
 
     <br>
-    <button v-on:click="goToCharity()">Back</button>
-    <button @click="logout" >Log Out</button>
+    <v-btn depressed small colour='primary' v-on:click="goToCharity()">Back</v-btn>
+    <v-btn depressed small colour='primary' @click="logout" >Log Out</v-btn>
 
   </div>
 </template>
