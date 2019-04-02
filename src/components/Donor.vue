@@ -20,6 +20,7 @@
     </b-progress><br>
     </div>
     <br>
+    <strong>To make a donation, kindly follow Steps 1 and 2 as found below:</strong><br><br>
     <h4>Step 1: Record Your Donation</h4>
     <input v-model="amount">
     <button @click="makeDonation(amount)"> Donate </button><br><br>
@@ -27,15 +28,16 @@
     <h4>Step 2: Make Your Donation</h4>
     <p>
       
-      <div v-if="recorded==false">
+      <div v-if="this.recorded==false">
         <p> The account number will be displayed after you have recorded the donation in Step 1
         </p>
       </div>
-      <div v-if="recorded">
+      <div v-if="this.recorded">
         Thank you for recording your donation, <br>
         Now please make your donation to: <br>
       <strong> 290-12345-67 </strong><br><br>
-      Your donation is greatly appreciated!
+      Your donation is greatly appreciated!<br>
+      You may refresh the page and view your pending donations <br> in "Pending" under "My Donations" <br> while your donation awaits verification from the bank.
       </div>
       
     </p>
@@ -272,12 +274,15 @@ export default {
         console.log(amount);
         const url = "http://localhost:3002/api/org.acme.charity.Donate";
         var documentID_num = 'D' +Math.floor((Math.random() * 99999) + 10000).toString();
+        let self = this;
         axios.post(url,{"amount":amount, "documentID": documentID_num}).then(function(status){ 
             if(status.status == 200){
+                self.recorded=true;
                 alert("Your donation of $"+amount+ " has been recorded, please wait for confirmation from the Treasury, before it is reflected in 'View Donations'");
-                this.recorded=true;
+                
             }
         }).catch(function(error){
+            console.log(error)
             alert("An error occurred, your donation was not recorded");
         });
         
