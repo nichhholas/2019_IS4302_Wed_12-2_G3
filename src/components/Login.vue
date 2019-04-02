@@ -2,9 +2,11 @@
   <div>
     <div class="login-for-beneficiaries">
       <h3>Sign in Page</h3>
-      <input type="text" placeholder="Email">
+      <input type="text" v-model= "account.memberID" placeholder="Email">
       <br>
-      <input type="password" placeholder="password">
+      <input type="password" v-model= "account.password" placeholder="password">
+      <br>
+      <a> {{login_response}}</a>
       <br>
       <div class="text-center">
         <!--<div class="w-50">
@@ -18,7 +20,7 @@
             <option value="Charity">Charity</option>
             <option value="Treasury">Treasury</option>
           </select>
-          <button @click="loginB">Log in</button>
+          <button @click="login">Log in</button>
         </div>
       </div>
     </div>
@@ -31,7 +33,12 @@
 export default {
   name: "Login",
   data() {
-    return {};
+    return { 
+      account:{
+
+      },
+      login_response: ''
+};
   },
   methods: {
     loginB: function() {
@@ -40,29 +47,33 @@ export default {
       var e = document.getElementById("sel1");
       var choice = e.options[e.selectedIndex].value;
       console.log(choice);
+      this.account.role = choice;
+      //add the authentcation here
+      
 
       this.$router.push({ name: choice });
     },
     login() {
       let uri = "http://localhost:3000/";
+      var e = document.getElementById("sel1");
+      var choice = e.options[e.selectedIndex].value;
+      this.account.role = choice;
+      console.log(this.account.role);
+      console.log(this.account.memberID);
       this.axios.post(uri, this.account).then(response => {
         console.log("login vue");
         console.log(response.data);
-        if (
-          response["data"] == "Wrong memberID" ||
-          response["data"] == "Wrong Password"
-        ) {
+        if (response["data"] == "Wrong memberID" || response["data"] == "Wrong Password") {
           //this.account = null;
-          this.beneficiary_login_response = "Wrong memberID/Password";
+          this.login_response = "Wrong memberID/Password";
           this.$router.push({ name: "Login" });
-        } else {
+        }else if(response['data'] == "Wrong role"){
+          this.login_response = 'You do not have the permission to log in as a' + ' ' + this.account.role;
+          this.$router.push({ name: "Login" });
+        }else {
           this.account = response.data;
-          //this.$router.push({name: 'Beneficiary'})
-          var e = document.getElementById("sel1");
-          var choice = e.options[e.selectedIndex].value;
           console.log(choice);
-
-          this.$router.push({ name: choice }); 
+          this.$router.push({ name: choice, params: {id:this.account.memberID} }); 
         }
       });
     }

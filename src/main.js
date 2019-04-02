@@ -10,6 +10,10 @@ import Vuetify from "vuetify";
 // import 'vuetify/dist/vuetify.min.css';
 // Vue.use(Vuetify);
 
+import VueAxios from 'vue-axios';
+import axios from 'axios';
+Vue.use(VueAxios, axios);
+
 Vue.config.productionTip = false;
 Vue.config.devtools = true
 
