@@ -1,6 +1,9 @@
 <template>
 <div>
   <h2>Beneficiary Page</h2>
+  <br>
+  <h3> Total Payouts </h3>
+  <p>{{calculateDistributions}} </p>
   <h3> My Payout </h3>
       <table id="payout" class="center" v-if="showPayouts">
       <thead>
@@ -67,11 +70,23 @@ export default {
       ],
       id: this.$route.params.id,
       showPayouts: false,
-      myPayouts: null
+      myPayouts: []
     };
   },
   mounted(){
     this.getPayout();
+  },
+  computed: {
+    calculateDistributions: function() {
+      var sum =0;
+      console.log(this.myPayouts.length);
+      for (var i=0; i< this.myPayouts.length; i++) {
+        // console.log(sum)
+        sum = sum + this.myPayouts[i].amount;
+      }
+      return sum;
+      console.log(sum)
+    }
   },
   methods: {
     returnToLogin: function() {
