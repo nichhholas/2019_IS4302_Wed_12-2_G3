@@ -4,7 +4,8 @@
       <input type="text" placeholder="Email" v-model="new_account.memberID" class="form-box"><br>
       <input type="password" placeholder="password" v-model="new_account.password" class="form-box"><br>
       <v-btn v-on:click="createUser()"> Sign Up </v-btn><br>
-      <span>Or Return to <router-link to="/"> Login page</router-link></span>
+      <a> {{register_response}} </a>
+      <span><router-link to="/"> Login page</router-link></span>
 
 
   </div>
@@ -37,18 +38,21 @@ export default {
     },
     createUser(){
       console.log("Hello?")
-      let uri = 'http://localhost:3000/register';
+      let uri = 'http://localhost:3000/Signup';
       console.log(uri);
       console.log(this.new_account.password);
-      this.account.role = 'Donor';
+      this.new_account.role = 'Donor';
+      console.log(this.new_account.role);
       this.axios.post(uri, this.new_account).then((response) => {
         console.log("here?")
+        console.log(response);
+        console.log(response["data"]);
         if (response["data"] == "memberID has been taken"){
           this.register_response = 'memberID has been taken. Please select another'
-          this.$router.push({name: 'Register'})
+          this.$router.push({name: 'Signup'})
         }else{
           // register(this.new_account.memberID);
-          this.register_response = 'Account has been successfully created. Head over to the login page to log in'
+          this.register_response = 'Account has been successfully created. Head over to the'
         }
       })
     }

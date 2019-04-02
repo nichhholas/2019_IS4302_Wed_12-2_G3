@@ -39,14 +39,14 @@
           <h2> Creating a more Transparent way to donate to fundraising events </h2><br><br>
           <h3>Sign in Page</h3>
           <v-flex xs12 sm6 md3>
-            <v-text-field label="Email" outline></v-text-field>
+            <v-text-field v-model= "account.memberID" label="Email" outline></v-text-field>
           </v-flex>
           <v-flex xs12 sm6 md3>
-            <v-text-field label="Password" outline></v-text-field>
+            <v-text-field v-model= "account.password" label="Password" outline></v-text-field>
           </v-flex>
           
           <v-flex  sm6 d-flex>
-            <v-select :items='imageLink.roles' label='Roles' solo></v-select>
+            <v-select v-model='selectedRole' :items='imageLink.roles' label='Roles' solo></v-select>
           </v-flex>
           <!--<input type="text" placeholder="Email">
           <input type="text" v-model= "account.memberID" placeholder="Email">
@@ -144,7 +144,9 @@ export default {
           "https://www.runsociety.com/wp-content/uploads/2018/04/Run-and-Raisin-2018-Singapore-thumb-960x540.jpg",
         logo: "https://i.postimg.cc/Nf4HDdbp/logo-new.png",
         roles: ["Donor", "Beneficiary", "Charity", "Treasury"]
-      }
+      },
+      fetchedLocale:'',
+      selectedRole: ''
     };
   },
   methods: {
@@ -161,9 +163,12 @@ export default {
     },
     login() {
       let uri = "http://localhost:3000/";
-      var e = document.getElementById("sel1");
-      var choice = e.options[e.selectedIndex].value;
-      this.account.role = choice;
+      console.log('hello')
+      console.log(this.selectedRole);
+      //var e = document.getElementById("sel1");
+      //var choice = e.options[e.selectedIndex].value;
+      //console.log(choice);
+      this.account.role = this.selectedRole;
       console.log(this.account.role);
       console.log("it's old")
       console.log(this.account.memberID);
@@ -185,10 +190,10 @@ export default {
           this.$router.push({ name: "Login" });
         } else {
           this.account = response.data;
-          console.log(choice);
+          //onsole.log(choice);
           console.log("this.account.memberID");
           this.$router.push({
-            name: choice,
+            name: this.selectedRole,
             params: { id: this.account.memberID }
           });
         }

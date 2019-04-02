@@ -16,7 +16,7 @@ Account.create_new_account = function createUser(new_account, result) {
     sql.query("SELECT memberID from login_details where memberID =" + "'"+new_account.memberID + "'", function(err,res){
         console.log(res);
         console.log(res[0])
-        if(res == null){
+        if(res[0] == null){
             console.log("wait")
             sql.query("INSERT INTO login_details set ?", new_account, function (err, res) {
                 if(err) { //if there is an error

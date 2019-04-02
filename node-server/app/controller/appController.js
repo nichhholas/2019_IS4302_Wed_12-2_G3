@@ -12,7 +12,7 @@ var account = require('../model/appModel.js');
 
 
 module.exports = function (app) {
-    app.route('/register').post(function (req, res) {
+    app.route('/Signup').post(function (req, res) {
         console.log("appcontroller yes")
         var new_account = new account(req.body); //assigning new_account details to new_account
         const schema = {
