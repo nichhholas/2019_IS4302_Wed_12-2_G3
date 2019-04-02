@@ -36,6 +36,7 @@
 
         <!-- Pending Records Collapsible Informations -->
         <b-collapse id="collapse-1-inner" class="mt-2">
+            <b-card-text>
         <u><h4> Pending Donation Records </h4></u>
         <table id="firstTable" class="center">
         <thead>
@@ -222,9 +223,9 @@
         <b-card-body>
 
             <!-- Pending Records Collapsible Buttons -->
-            <b-button v-b-toggle.collapse-1-inner class="m-1">Confirmed Donation Records</b-button>
-            <b-button v-b-toggle.collapse-2-inner class="m-1">Confirmed Withdrawal Records</b-button>
-            <b-button v-b-toggle.collapse-3-inner class="m-1">Confirmed Bank Statements</b-button>
+            <b-button v-b-toggle.collapse-1-inner class="m-1">Rejected Donation Records</b-button>
+            <b-button v-b-toggle.collapse-2-inner class="m-1">Rejected Withdrawal Records</b-button>
+            <b-button v-b-toggle.collapse-3-inner class="m-1">Rejected Bank Statements</b-button>
 
             <b-collapse id="collapse-1-inner" class="mt-2">
                 <b-card-text>
