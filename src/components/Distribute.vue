@@ -1,15 +1,18 @@
 <template>
   <div id="app">
-    <h3>Distribute</h3>
+    <h3>Make Distribution</h3>
     <input v-model="amount" size="25" placeholder="Amount"><br>
     <input v-model="beneficiary" size="25" placeholder="Beneficiary ID"><br>
     <button v-on:click="makeDistribution(amount,beneficiary)"> Distribute </button> <br><br>
+
+    <h3>Total Distributions</h3>
+    <p>{{calculateDistributions}}</p>
 
     <!-- start of collapsible -->
     <div role="tablist">
     <b-card no-body class="mb-1">
       <b-card-header header-tag="header" class="p-1" role="tab">
-        <b-button href="#" v-b-toggle.accordion-1 variant="info">My Withdrawals</b-button>
+        <b-button href="#" v-b-toggle.accordion-1 variant="info">My Distributions</b-button>
       </b-card-header>
       <b-collapse id="accordion-1" accordion="my-accordion" role="tabpanel">
         <b-card-body>
@@ -134,7 +137,17 @@ export default {
     this.fetchRejected();
     this.fetchPending();
   },
-  components: {
+  computed: {
+    calculateDistributions: function() {
+      var sum =0;
+      console.log(this.confirmedDistributions.length);
+      for (var i=0; i< this.confirmedDistributions.length; i++) {
+        // console.log(sum)
+        sum = sum + this.confirmedDistributions[i].amount;
+      }
+      return sum;
+      console.log(sum)
+    }
   },
   methods:{
 
