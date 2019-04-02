@@ -38,7 +38,6 @@
           <img src="https://i.postimg.cc/Y9592WR4/LOGO.png">
           <h2> Creating a more Transparent way to donate to fundraising events </h2><br><br>
           <h3>Sign in Page</h3>
-<<<<<<< HEAD
           <v-flex xs12 sm6 md3>
             <v-text-field label="Email" outline></v-text-field>
           </v-flex>
@@ -50,9 +49,7 @@
             <v-select :roles="roles" label="Roles" solo></v-select>
           </v-flex>
           <!--<input type="text" placeholder="Email">
-=======
           <input type="text" v-model= "account.memberID" placeholder="Email">
->>>>>>> c5927bd7c1d12d0a6dd0af57f979505bea59951a
           <br>
           <input type="password" v-model= "account.password" placeholder="password">
           <br>
@@ -64,13 +61,11 @@
               <option value="Charity">Charity</option>
               <option value="Treasury">Treasury</option>
             </select>
-<<<<<<< HEAD
             <button @click="loginB">Log in</button>
           </div>-->
-=======
-            <button @click="login">Log in</button>
-          </div>
->>>>>>> c5927bd7c1d12d0a6dd0af57f979505bea59951a
+             <v-btn color="info" @click="login">Login</v-btn>
+                 <p> Or you can <router-link to="Signup"> an account now</router-link> </p>
+        
 
           <v-flex xs12>
             <v-container grid-list-xl>

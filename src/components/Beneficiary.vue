@@ -57,6 +57,7 @@
 
 
 <script>
+/*eslint-disable */
 export default {
   name: "Beneficiary", //this is the name of the component
   data() {
