@@ -26,7 +26,7 @@
       </tbody>
     </table><br>
 
-  <button @click="goWeb"> Report </button>
+  <v-btn depressed small colour='primary' @click="goWeb"> Report </v-btn>
   <!-- <h3>Transaction Log</h3>
   <body>
     <table id="firstTable" class="center">
@@ -50,7 +50,7 @@
   </body> -->
   <br>
   <br>
-  <button @click="returnToLogin">Log Out</button>
+  <v-btn depressed small colour='primary' @click="returnToLogin">Log Out</v-btn>
 </div>
 </template>
 

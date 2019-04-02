@@ -2,7 +2,7 @@
   <div id="app">
     <h3>Withdrawal</h3>
     <input v-model="amount">
-    <button v-on:click="makeWithdrawal(amount)"> Make Withdrawal </button> 
+    <v-btn depressed small colour='primary' v-on:click="makeWithdrawal(amount)"> Make Withdrawal </v-btn> 
     <br><br>
     <h3>Total Withdrawals Made</h3>
     <p>{{calculateWithdrawals}} </p>
@@ -116,8 +116,8 @@
     <br>
     <br>
 
-    <button v-on:click="goToCharity()">Back</button>
-    <button @click="logout" >Log Out</button>
+    <v-btn depressed small colour='primary' v-on:click="goToCharity()">Back</v-btn>
+    <v-btn depressed small colour='primary' @click="logout" >Log Out</v-btn>
   </div>
 </template>
 

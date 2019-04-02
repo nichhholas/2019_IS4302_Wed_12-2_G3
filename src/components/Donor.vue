@@ -22,8 +22,8 @@
     <br>
     <strong>To make a donation, kindly follow Steps 1 and 2 as found below:</strong><br><br>
     <h4>Step 1: Record Your Donation</h4>
-    <input v-model="amount">
-    <button @click="makeDonation(amount)"> Donate </button><br><br>
+    <input v-model="amount" outline>
+    <v-btn depressed small colour='primary' @click="makeDonation(amount)"> Donate </v-btn><br><br>
     <div>
     <h4>Step 2: Make Your Donation</h4>
     <p>

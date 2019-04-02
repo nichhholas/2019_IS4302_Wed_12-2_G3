@@ -38,6 +38,7 @@
           <img src="https://i.postimg.cc/Y9592WR4/LOGO.png">
           <h2> Creating a more Transparent way to donate to fundraising events </h2><br><br>
           <h3>Sign in Page</h3>
+<<<<<<< HEAD
           <v-flex xs12 sm6 md3>
             <v-text-field label="Email" outline></v-text-field>
           </v-flex>
@@ -49,8 +50,11 @@
             <v-select :roles="roles" label="Roles" solo></v-select>
           </v-flex>
           <!--<input type="text" placeholder="Email">
+=======
+          <input type="text" v-model= "account.memberID" placeholder="Email">
+>>>>>>> c5927bd7c1d12d0a6dd0af57f979505bea59951a
           <br>
-          <input type="password" placeholder="password">
+          <input type="password" v-model= "account.password" placeholder="password">
           <br>
           <div class="form-group">
             <label for="sel1">Choose the type of participant you are:</label>
@@ -60,8 +64,13 @@
               <option value="Charity">Charity</option>
               <option value="Treasury">Treasury</option>
             </select>
+<<<<<<< HEAD
             <button @click="loginB">Log in</button>
           </div>-->
+=======
+            <button @click="login">Log in</button>
+          </div>
+>>>>>>> c5927bd7c1d12d0a6dd0af57f979505bea59951a
 
           <v-flex xs12>
             <v-container grid-list-xl>
@@ -130,7 +139,9 @@ export default {
   name: "Login",
   data() {
     return {
-      account: {},
+      account: {
+
+      },
       login_response: "",
       title: "CHAinRITY",
       imageLink: {
@@ -159,6 +170,7 @@ export default {
       var choice = e.options[e.selectedIndex].value;
       this.account.role = choice;
       console.log(this.account.role);
+      console.log("it's old")
       console.log(this.account.memberID);
       this.axios.post(uri, this.account).then(response => {
         console.log("login vue");
@@ -179,6 +191,7 @@ export default {
         } else {
           this.account = response.data;
           console.log(choice);
+          console.log("this.account.memberID");
           this.$router.push({
             name: choice,
             params: { id: this.account.memberID }
