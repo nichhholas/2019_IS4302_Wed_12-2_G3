@@ -9,6 +9,7 @@ import "bootstrap-vue/dist/bootstrap-vue.css"
 import Vuetify from "vuetify";
 import 'vuetify/dist/vuetify.min.css';
 // Vue.use(Vuetify);
+import 'material-design-icons-iconfont/dist/material-design-icons.css'
 
 import VueAxios from 'vue-axios';
 import axios from 'axios';

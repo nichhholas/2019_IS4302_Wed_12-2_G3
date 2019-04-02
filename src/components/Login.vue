@@ -45,8 +45,8 @@
             <v-text-field label="Password" outline></v-text-field>
           </v-flex>
           
-          <v-flex xs12 sm6 d-flex>
-            <v-select :roles="roles" label="Roles" solo></v-select>
+          <v-flex  sm6 d-flex>
+            <v-select :items='imageLink.roles' label='Roles' solo></v-select>
           </v-flex>
           <!--<input type="text" placeholder="Email">
           <input type="text" v-model= "account.memberID" placeholder="Email">
@@ -266,5 +266,6 @@ p a {
   text-decoration: underline;
   cursor: pointer;
 }
+
 </style>
 </style>
