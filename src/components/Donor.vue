@@ -5,9 +5,13 @@
     <div class="event">
     <h3><strong>Current Event</strong></h3>
     <img src="../assets/NKF.jpg" alt ="photo of NKF">
-    <p class="para">Cillum proident ut mollit occaecat nostrud ad aliquip dolor. 
-      Reprehenderit incididunt et excepteur ex esse fugiat adipisicing veniam eu ut aute fugiat est. Tempor et sint officia magna commodo dolore voluptate ex deserunt ad culpa. Elit fugiat occaecat consectetur tempor eiusmod occaecat occaecat officia ut. Reprehenderit dolore ullamco ad enim Lorem et id aliqua et aliquip nostrud. 
-      Commodo enim veniam elit anim. Elit velit sint Lorem nisi cillum irure mollit aute eiusmod sit consectetur do. Ea id tempor velit sunt adipisicing enim eiusmod excepteur nisi cillum consectetur magna. Esse reprehenderit proident aute culpa eiusmod veniam id deserunt cupidatat anim mollit. Reprehenderit Lorem eu dolore Lorem et eu excepteur voluptate laborum enim cillum officia ea magna. Lorem consequat nisi amet eu sunt pariatur do elit anim duis deserunt reprehenderit elit.</p>
+    <p class="para">
+      We urgently need your help to continue providing life-saving medical protection to struggling families in Singapore. <br>
+      These families are just like yours. The difference is that they have been stricken with debilitating illnesses that have left them with heavy financial debts.
+      <strong>Your donation can turn these lives around</strong>, and give them hope in the midst of their unfortunate circumstances.
+      <br><br>
+      Join us at our carnival and <strong>be part of the difference </strong>!
+      </p>
     <h4>Current Fundraising goal</h4>
     <b-progress :max="max" height="2rem" :striped="'striped'">
       <b-progress-bar :value="value" :striped="'striped'">
@@ -16,12 +20,30 @@
     </b-progress><br>
     </div>
     <br>
-    <h4>Record Your Donation</h4>
+    <h4>Step 1: Record Your Donation</h4>
     <input v-model="amount">
     <button @click="makeDonation(amount)"> Donate </button><br><br>
+    <div>
+    <h4>Step 2: Make Your Donation</h4>
+    <p>
+      
+      <div v-if="recorded==false">
+        <p> The account number will be displayed after you have recorded the donation in Step 1
+        </p>
+      </div>
+      <div v-if="recorded">
+        Thank you for recording your donation, <br>
+        Now please make your donation to: <br>
+      <strong> 290-12345-67 </strong><br><br>
+      Your donation is greatly appreciated!
+      </div>
+      
+    </p>
+    </div>  
     <h4>Total Donations Made</h4>
     <p>{{calculateDonations}} </p>
     <br>
+
 
     <!-- start of collapsible -->
     <div role="tablist">
@@ -228,6 +250,7 @@ export default {
         value: 750,
         amount: 0,
         treasury: null,
+        recorded: false,
       bankStatements: null,
       financialRecord:null,
       myDonation: [
@@ -252,10 +275,12 @@ export default {
         axios.post(url,{"amount":amount, "documentID": documentID_num}).then(function(status){ 
             if(status.status == 200){
                 alert("Your donation of $"+amount+ " has been recorded, please wait for confirmation from the Treasury, before it is reflected in 'View Donations'");
+                this.recorded=true;
             }
         }).catch(function(error){
             alert("An error occurred, your donation was not recorded");
         });
+        
     },
     async fetchBankStatements(){
       console.log("fetch bank statements");
