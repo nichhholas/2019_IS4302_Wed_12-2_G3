@@ -40,7 +40,6 @@
       You may refresh the page and view your pending donations <br> in "Pending" under "My Donations" <br> while your donation awaits verification from the bank.
       </div>
       
-    </p>
     </div>  
     <h4>Total Donations Made</h4>
     <p>{{calculateDonations}} </p>
