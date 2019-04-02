@@ -44,6 +44,7 @@ module.exports = function (app) {
     });
 
     app.route('/').post(function (req, res) { //log-in  
+        console.log("can you reach here")
         account.log_in(req.body, function (err, account) { //calls method in appModel.js
             console.log("account");
             console.log(account);

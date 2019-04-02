@@ -2,7 +2,7 @@ const express = require('express'),
   bodyParser = require('body-parser'),
   app = express();
 
-const cors = require("cors")
+const cors = require('cors')
 
 const port = 3000; //default is 3000
   
@@ -12,7 +12,7 @@ const mysql = require('mysql');
 const mc = mysql.createConnection({
     host: 'localhost',
     user: 'root',
-    password: 'zw34pfak',
+    password: 'Password123',
     database: 'is4302'
 });
  
