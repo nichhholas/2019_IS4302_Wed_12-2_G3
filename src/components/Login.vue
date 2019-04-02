@@ -1,88 +1,70 @@
 <template>
   <div>
     <div class="login-for-beneficiaries">
-      <h3>Sign in for Beneficiaries</h3>
-      <input type="text" v-model= "account.beneficiary_ID" placeholder="ID">
+      <h3>Sign in Page</h3>
+      <input type="text" placeholder="Email">
       <br>
-      <input type="password" v-model= "account.beneficiary_password" placeholder="password">
+      <input type="password" placeholder="password">
       <br>
-      <a> {{beneficiary_login_response}}</a>
-      <br>
-      <button @click="login">Log In</button>
+      <div class="text-center">
+        <!--<div class="w-50">
+          <b-form-select :options="options"></b-form-select>
+        </div>-->
+        <div class="form-group">
+          <label for="sel1">Choose the type of participant you are:</label>
+          <select class="form-control" id="sel1">
+            <option value="Donor" selected="selected">Donor</option>
+            <option value="Beneficiary">Beneficiary</option>
+            <option value="Charity">Charity</option>
+            <option value="Treasury">Treasury</option>
+          </select>
+          <button @click="loginB">Log in</button>
+        </div>
+      </div>
     </div>
     <br>
-
-    <div class="login-for-donors">
-      <h3>Sign in for Donors</h3>
-      <input type="text" v-model= "donor_ID" placeholder="ID">
-      <br>
-      <input type="password" v-model= "donor_password" placeholder="password">
-      <br>
-      <button @click="login">Log In</button>
-    </div>
-    <br>
-
-    <div class="login-for-charity">
-      <h3>Sign in for Charity</h3>
-      <input type="text" v-model="charityOrg_ID" placeholder="ID">
-      <br>
-      <input type="password" v-model="charityOrg_password" placeholder="password">
-      <br>
-      <button @click="login">Log In</button>
-      <p>
-        You don't have an account ? You can
-        <router-link to="Signup">create one</router-link>
-      </p>
-    </div>
+    <p> Or you can <router-link to="Signup"> an account now</router-link> </p>
   </div>
 </template>
 
 <script>
-import axios from 'axios'
-console.log('Login.vue-Is this working');
 export default {
   name: "Login",
   data() {
-    return {
-      account:{
-
-      },
-      //beneficiary_ID: '',
-      //beneficiary_password: '',
-      donor_ID: '',
-      donor_password: '',
-      charityOrg_ID: '',
-      charityOrg_password: '',
-      beneficiary_login_response: '',
-    };
+    return {};
   },
   methods: {
     loginB: function() {
       //console.log("pushed")
-      this.$router.replace({ name: 'Beneficiary', params: { id: this.id}});
+      /* eslint-disable*/
+      var e = document.getElementById("sel1");
+      var choice = e.options[e.selectedIndex].value;
+      console.log(choice);
+
+      this.$router.push({ name: choice });
     },
-    loginD: function() {
-      this.$router.replace({ name: 'Donor', params: { id: this.id}});
-    },
-    loginC: function() {
-      this.$router.replace({ name: 'Charity', params: { id: this.id}});
-    },
-    login(){
-        let uri = 'http://localhost:3000/';
-        console.log(this.account.beneficiary_ID)
-        axios.post(uri, this.account).then((response) => {
-          console.log("login vue")
-          console.log(response.data);
-          if (response["data"] == "Wrong memberID" || response["data"] == "Wrong Password"){
-            //this.account = null;
-            this.beneficiary_login_response = 'Wrong memberID/Password'
-            this.$router.push({name: 'Login'})
-            
-          }else{
-            this.account = response.data;
-            this.$router.push({ name: 'Beneficiary', params: { id: this.account.beneficiary_ID}})
-          }
-        })
+    login() {
+      let uri = "http://localhost:3000/";
+      this.axios.post(uri, this.account).then(response => {
+        console.log("login vue");
+        console.log(response.data);
+        if (
+          response["data"] == "Wrong memberID" ||
+          response["data"] == "Wrong Password"
+        ) {
+          //this.account = null;
+          this.beneficiary_login_response = "Wrong memberID/Password";
+          this.$router.push({ name: "Login" });
+        } else {
+          this.account = response.data;
+          //this.$router.push({name: 'Beneficiary'})
+          var e = document.getElementById("sel1");
+          var choice = e.options[e.selectedIndex].value;
+          console.log(choice);
+
+          this.$router.push({ name: choice }); 
+        }
+      });
     }
   }
 };
@@ -91,6 +73,11 @@ export default {
 <style scoped>
 .login {
   margin-top: 40px;
+}
+
+.form-group {
+  width: 50%;
+  margin: 0 auto;
 }
 input {
   margin: 10px 0;
@@ -104,21 +91,13 @@ button {
   cursor: pointer;
 }
 
+.text-center {
+  text-align: center;
+  display: inline;
+  width: 45%;
+}
 p a {
   text-decoration: underline;
   cursor: pointer;
 }
 </style>
-
-methods: {
-    loginB: function() {
-      //console.log("pushed")
-      this.$router.replace({ name: 'Beneficiary', params: { id: this.id}});
-    },
-    loginD: function() {
-      this.$router.replace({ name: 'Donor', params: { id: this.id}});
-    },
-    loginC: function() {
-      this.$router.replace({ name: 'Charity', params: { id: this.id}});
-    }
-  }
