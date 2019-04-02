@@ -1,9 +1,9 @@
 <template>
   <div class="sign-up">
       <p> Let's create a new account</p><br>
-      <input type="text" placeholder="Email" v-model="id" class="form-box"><br>
-      <input type="password" placeholder="password" v-model="password" class="form-box"><br>
-      <v-btn v-on:click="register(this.id)"> Sign Up </v-btn><br>
+      <input type="text" placeholder="Email" v-model="new_account.memberID" class="form-box"><br>
+      <input type="password" placeholder="password" v-model="new_account.password" class="form-box"><br>
+      <v-btn v-on:click="createUser()"> Sign Up </v-btn><br>
       <span>Or Return to <router-link to="/"> Login page</router-link></span>
 
 
@@ -15,8 +15,8 @@ export default {
   name: "Signup",
   data() {
     return {
-      id:null,
-      password:null
+      new_account:{},
+      register_response: '',
     };
   },
   methods: {
@@ -35,6 +35,23 @@ export default {
             alert("An error occurred, your account was not created");
         });
     },
+    createUser(){
+      console.log("Hello?")
+      let uri = 'http://localhost:3000/register';
+      console.log(uri);
+      console.log(this.new_account.password);
+      this.account.role = 'Donor';
+      this.axios.post(uri, this.new_account).then((response) => {
+        console.log("here?")
+        if (response["data"] == "memberID has been taken"){
+          this.register_response = 'memberID has been taken. Please select another'
+          this.$router.push({name: 'Register'})
+        }else{
+          // register(this.new_account.memberID);
+          this.register_response = 'Account has been successfully created. Head over to the login page to log in'
+        }
+      })
+    }
   }
 };
 </script>
