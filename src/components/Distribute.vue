@@ -1,8 +1,8 @@
 <template>
   <div id="app">
     <h3>Make Distribution</h3>
-    <input v-model="amount" size="25" placeholder="Amount"><br>
-    <input v-model="beneficiary" size="25" placeholder="Beneficiary ID"><br>
+    <input v-model="amount" size="25" placeholder="Amount" class="form-box"><br>
+    <input v-model="beneficiary" size="25" placeholder="Beneficiary ID" class="form-box"><br>
     <v-btn depressed small colour='primary' v-on:click="makeDistribution(amount,beneficiary)"> Distribute </v-btn> <br><br>
 
     <h3>Total Distributions</h3>
@@ -217,6 +217,13 @@ h3{
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.form-box {
+    margin-top: 25px;
+    border-radius: 5px;
+    border: solid 2px
+
 }
 
 /* button {

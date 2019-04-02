@@ -1,8 +1,8 @@
 <template>
   <div class="sign-up">
       <p> Let's create a new account</p><br>
-      <input type="text" placeholder="Email"><br>
-      <input type="password" placeholder="password"><br>
+      <input type="text" placeholder="Email" class="form-box"><br>
+      <input type="password" placeholder="password" class="form-box"><br>
       <button> Sign Up </button><br>
       <span>Or Return to <router-link to="/"> Login page</router-link></span>
 
@@ -40,5 +40,12 @@ button {
 p a {
   text-decoration: underline;
   cursor: pointer;
+}
+
+.form-box {
+    margin-top: 25px;
+    border-radius: 5px;
+    border: solid 2px
+
 }
 </style>

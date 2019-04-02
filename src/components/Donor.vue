@@ -22,7 +22,7 @@
     <br>
     <strong>To make a donation, kindly follow Steps 1 and 2 as found below:</strong><br><br>
     <h4>Step 1: Record Your Donation</h4>
-    <input v-model="amount" outline>
+    <input v-model="amount" outline class="form-box">
     <v-btn depressed small colour='primary' @click="makeDonation(amount)"> Donate </v-btn><br><br>
     <div>
     <h4>Step 2: Make Your Donation</h4>
@@ -388,5 +388,12 @@ h3 {
   border-style: solid;
   margin-left: 50px;
   margin-right: 50px;
+}
+
+.form-box {
+    margin-top: 25px;
+    border-radius: 5px;
+    border: solid 2px
+
 }
 </style>

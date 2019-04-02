@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <h3>Withdrawal</h3>
-    <input v-model="amount">
+    <input v-model="amount" class="form-box">
     <v-btn depressed small colour='primary' v-on:click="makeWithdrawal(amount)"> Make Withdrawal </v-btn> 
     <br><br>
     <h3>Total Withdrawals Made</h3>
@@ -220,6 +220,13 @@ h3{
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
+}
+
+.form-box {
+    margin-top: 25px;
+    border-radius: 5px;
+    border: solid 2px
+
 }
 
 /* button {
