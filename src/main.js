@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import "bootstrap-vue/dist/bootstrap-vue.css"
 //import Firebase from "firebase";
 import Vuetify from "vuetify";
-// import 'vuetify/dist/vuetify.min.css';
+import 'vuetify/dist/vuetify.min.css';
 // Vue.use(Vuetify);
 
 import VueAxios from 'vue-axios';
@@ -19,7 +19,7 @@ Vue.config.devtools = true
 
 
 Vue.use(VueFire);
-
+Vue.use(Vuetify);
 Vue.use(BootstrapVue);
 
 Vue.config.productionTip = false;
