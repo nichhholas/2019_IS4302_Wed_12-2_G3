@@ -19,6 +19,9 @@
     <h4>Record Your Donation</h4>
     <input v-model="amount">
     <button @click="makeDonation(amount)"> Donate </button><br><br>
+    <h4>Total Donations Made</h4>
+    <p>{{calculateDonations}} </p>
+    <br>
 
     <!-- start of collapsible -->
     <div role="tablist">
@@ -218,8 +221,7 @@ export default {
   data() {
     return {
         id: this.$route.params.id,
-        ownDonations: null,
-        showOwnDonations: false,
+        ownDonations: [],
         rejectedDonations: [],
         pendingDonations:[],
         max: 10000,
@@ -262,7 +264,6 @@ export default {
       .then((data)=>(
           this.bankStatements = data
           ))
-      this.showTxn();
     },
     async fetchFinancialRecord(){
       console.log("fetch bank statements");
@@ -271,7 +272,6 @@ export default {
       .then((data)=>(
           this.financialRecord = data
           ))
-      this.showTxn();
     },
     async fetchOwnDonations(){
       var url = "http://localhost:3001/api/org.acme.charity.FinancialRecord?filter=%7B%22where%22%3A%7B%22status%22%3A%22Successful%22%2C%22creator%22%3A%22resource%3Aorg.acme.charity.Donor%23"+this.id+"%22%7D%7D"
@@ -301,9 +301,6 @@ export default {
     showDonation: function(){
       document.getElementById("donationTable").style.display="inline-table";
     },
-    showTxn: function(){
-      document.getElementById("allTxn").style.display="inline-table";
-    },
     logout: function() {
       //console.log("pushed")
       this.$router.push({ name: "Login" });
@@ -317,7 +314,18 @@ export default {
           ))
       this.value = this.treasury[0]["funds"];
       console.log(this.treasury[0]);
-
+    }
+  },
+  computed: {
+    calculateDonations: function() {
+      var sum =0;
+      console.log(this.ownDonations.length);
+      for (var i=0; i< this.ownDonations.length; i++) {
+        // console.log(sum)
+        sum = sum + this.ownDonations[i].amount;
+      }
+      return sum;
+      console.log(sum)
     }
   }
 };
