@@ -272,7 +272,7 @@ export default {
   methods:{
     makeDonation(amount){
         console.log(amount);
-        const url = "http://localhost:3002/api/org.acme.charity.Donate";
+        const url = "http://localhost:3001/api/org.acme.charity.Donate";
         var documentID_num = 'D' +Math.floor((Math.random() * 99999) + 10000).toString();
         let self = this;
         axios.post(url,{"amount":amount, "documentID": documentID_num}).then(function(status){ 

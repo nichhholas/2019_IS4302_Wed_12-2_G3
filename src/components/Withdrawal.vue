@@ -159,7 +159,7 @@ export default {
   methods:{
     makeWithdrawal(amount){
         console.log(amount);
-        const url = "http://localhost:3001/api/org.acme.charity.Withdraw";
+        const url = "http://localhost:3002/api/org.acme.charity.Withdraw";
         var documentID_num = 'W' + Math.floor((Math.random() * 99999) + 10000).toString();
         axios.post(url,{"amount":amount, "documentID": documentID_num}).then(function(status){ 
             if(status.status == 200){

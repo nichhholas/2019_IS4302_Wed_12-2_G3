@@ -42,6 +42,7 @@
         <thead>
             <tr>
             <th>Document ID</th>
+            <th>From</th>
             <th>Type</th>
             <th>Amount</th>
             <th>Status</th>
@@ -51,12 +52,13 @@
         <tbody>
             <tr v-for="row in pendingDonationRecords" :key="row.documentID">
             <td>{{row.documentID}}</td>
+            <td>{{row.creator}}</td>
             <td>{{row.type}}</td>
             <td>{{row.amount}}</td>
             <td>{{row.status}}</td>
             <td>
-            <button v-if="row.status=='Pending'" v-on:click="confirmFinancialRecord('Successful',row.documentID)"> Confirm </button>
-            <button v-if="row.status=='Pending'" v-on:click="confirmFinancialRecord('Denied',row.documentID)"> Reject </button>
+            <v-btn small v-if="row.status=='Pending'" v-on:click="confirmFinancialRecord('Successful',row.documentID)"> Confirm </v-btn>
+            <v-btn small v-if="row.status=='Pending'" v-on:click="confirmFinancialRecord('Denied',row.documentID)"> Reject </v-btn>
             </td>
             </tr>
         </tbody>
@@ -84,8 +86,8 @@
             <td>{{row.amount}}</td>
             <td>{{row.status}}</td>
             <td>
-            <button v-on:click="confirmFinancialRecord('Successful',row.documentID)"> Confirm </button>
-            <button v-on:click="confirmFinancialRecord('Denied',row.documentID)"> Reject </button>
+            <v-btn small v-on:click="confirmFinancialRecord('Successful',row.documentID)"> Confirm </v-btn>
+            <v-btn small v-on:click="confirmFinancialRecord('Denied',row.documentID)"> Reject </v-btn>
             </td>
             </tr>
         </tbody>
@@ -113,8 +115,8 @@
             <td>{{row.amount}}</td>
             <td>{{row.status}}</td>
             <td>
-            <button v-on:click="confirmBankStatement('Successful',row.documentID)"> Confirm </button>
-            <button v-on:click="confirmBankStatement('Denied',row.documentID)"> Reject </button>
+            <v-btn small v-on:click="confirmBankStatement('Successful',row.documentID)"> Confirm </v-btn>
+            <v-btn small v-on:click="confirmBankStatement('Denied',row.documentID)"> Reject </v-btn>
             </td>
             </tr>
         </tbody>
@@ -310,7 +312,7 @@
 
 
         <br><br>
-            <button @click="logout" >Log Out</button>
+            <v-btn small @click="logout" >Log Out</v-btn>
 
     </div>
 </template>
