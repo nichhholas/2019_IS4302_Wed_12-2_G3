@@ -1,7 +1,9 @@
 <template>
   <v-app light>
     <v-toolbar class="white">
-      <v-toolbar-title class="mx-0" v-text="title"></v-toolbar-title>
+      <v-toolbar-side-icon>
+        <img :src="imageLink.logo" alt="Vuetify.js" height="15%" width="80%">
+      </v-toolbar-side-icon>
       <p>Beta</p>
       <v-spacer></v-spacer>
       <v-toolbar-items>
@@ -13,15 +15,15 @@
       <section>
         <v-parallax :src="imageLink.sub_main" height="600">
           <v-layout column align-center justify-center class="white--text">
-            <h1
+            <!--<h1
               class="white--text mb-2 display-1 text-xs-center"
               style="font-weight: 900; text-shadow: 3px 2px #000000"
-            >Chainrity</h1>
+            >CHAinRITY</h1>
             <div
               class="white--text subheading mb-3 text-xs-center"
               style="font-weight: 900; text-shadow: 3px 2px #000000"
             >Creating a more transparent way to donate</div>
-            <!--<v-btn
+            <v-btn
               class="blue lighten-2 mt-5"
               dark
               large
@@ -33,8 +35,20 @@
 
       <section>
         <v-layout column wrap class="my-5" align-center>
+          <img src="https://i.postimg.cc/Y9592WR4/LOGO.png">
+          <h2> Creating a more Transparent way to donate to fundraising events </h2><br><br>
           <h3>Sign in Page</h3>
-          <input type="text" placeholder="Email">
+          <v-flex xs12 sm6 md3>
+            <v-text-field label="Email" outline></v-text-field>
+          </v-flex>
+          <v-flex xs12 sm6 md3>
+            <v-text-field label="Password" outline></v-text-field>
+          </v-flex>
+          
+          <v-flex xs12 sm6 d-flex>
+            <v-select :roles="roles" label="Roles" solo></v-select>
+          </v-flex>
+          <!--<input type="text" placeholder="Email">
           <br>
           <input type="password" placeholder="password">
           <br>
@@ -47,7 +61,7 @@
               <option value="Treasury">Treasury</option>
             </select>
             <button @click="loginB">Log in</button>
-          </div>
+          </div>-->
 
           <v-flex xs12>
             <v-container grid-list-xl>
@@ -61,7 +75,7 @@
                       <div class="headline text-xs-center">All transactions are logged</div>
                     </v-card-title>
                     <v-card-text>
-                      Using Chainrity, all the transactions between Donors, Charities, Treasury and the Beneficiaries
+                      Using CHAinRITY, all the transactions between Donors, Charities, Treasury and the Beneficiaries
                       are recorded onto the blockchain. The transactions can be viewed with a simple click of a button.
                     </v-card-text>
                   </v-card>
@@ -75,7 +89,7 @@
                       <div class="headline">Treasuries approves transfers</div>
                     </v-card-title>
                     <v-card-text>
-                      A treasury ,such as banks now would approve or reject transactions to ensure and legitmise all the transactions. This
+                      A treasury ,such as banks now would approve or reject transactions to ensure and legitimise all the transactions. This
                       can prevent siphoniing or misused of funds
                     </v-card-text>
                   </v-card>
@@ -103,7 +117,7 @@
       <v-footer class="blue darken-2">
         <v-layout row wrap align-center>
           <v-flex xs12 class="text-xs-center">
-            <div class="white--text ml-3">Made by Armodillos</div>
+            <div class="white--text ml-3">CHAinRITY 2019</div>
           </v-flex>
         </v-layout>
       </v-footer>
@@ -118,10 +132,12 @@ export default {
     return {
       account: {},
       login_response: "",
-      title: "Chainrity",
+      title: "CHAinRITY",
       imageLink: {
         sub_main:
-          "https://www.runsociety.com/wp-content/uploads/2018/04/Run-and-Raisin-2018-Singapore-thumb-960x540.jpg"
+          "https://www.runsociety.com/wp-content/uploads/2018/04/Run-and-Raisin-2018-Singapore-thumb-960x540.jpg",
+        logo: "https://i.postimg.cc/Nf4HDdbp/logo-new.png",
+        roles: ["Donor", "Beneficiary", "Charity", "Treasury"]
       }
     };
   },
