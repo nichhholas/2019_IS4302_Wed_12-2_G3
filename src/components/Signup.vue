@@ -1,4 +1,5 @@
 <template>
+
   <div class="sign-up">
       <p> Let's create a new account</p><br>
       <input type="text" placeholder="Email" v-model="new_account.memberID" class="form-box"><br>
@@ -12,6 +13,7 @@
 </template>
 
 <script>
+/* eslint-disable */
 export default {
   name: "Signup",
   data() {

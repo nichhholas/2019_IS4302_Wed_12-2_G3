@@ -73,7 +73,7 @@
                 <v-flex xs12 md4>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class="text-xs-center">
-                      <v-icon x-large class="blue--text text--lighten-2">Transparent</v-icon>
+                      <h2 style="color:#51D0F4">Transparent</h2>
                     </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline text-xs-center">All transactions are logged</div>
@@ -87,7 +87,7 @@
                 <v-flex xs12 md4>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class="text-xs-center">
-                      <v-icon x-large class="blue--text text--lighten-2">Accountable</v-icon>
+                      <h2 style="color:#51D0F4">Accountable</h2>
                     </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline">Treasuries approves transfers</div>
@@ -101,7 +101,7 @@
                 <v-flex xs12 md4>
                   <v-card class="elevation-0 transparent">
                     <v-card-text class="text-xs-center">
-                      <v-icon x-large class="blue--text text--lighten-2">Accurate</v-icon>
+                      <h2 style="color:#51D0F4">Accurate</h2>
                     </v-card-text>
                     <v-card-title primary-title class="layout justify-center">
                       <div class="headline text-xs-center">Confirmation of funds</div>
