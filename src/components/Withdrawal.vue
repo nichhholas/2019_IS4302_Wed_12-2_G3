@@ -2,7 +2,12 @@
   <div id="app">
     <h3>Withdrawal</h3>
     <input v-model="amount" class="form-box">
-    <v-btn depressed small colour='primary' v-on:click="makeWithdrawal(amount)"> Make Withdrawal </v-btn> 
+    <br>
+    <v-btn depressed small colour='primary' v-on:click="makeWithdrawal(amount)" v-if="this.amount<=1500"> Make Withdrawal </v-btn> 
+    <br>
+    <h7 v-if="this.amount > 1500"> Please enter an amount less than your maximum withdrawal amount (less than or equal to 1500) </h7>
+    <!-- 1500 is a hypothetical amount that the Charity Organisation was supposed to have agreed upon with the Commissioner of Charities-->
+
     <br><br>
     <h3>Total Withdrawals Made</h3>
     <p>{{calculateWithdrawals}} </p>
