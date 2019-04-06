@@ -2,8 +2,8 @@
 <div>
     <h2>Charity Page</h2>
     <br>
-    <button v-on:click="goToWithdrawal()">Withdrawal</button>
-    <button v-on:click="goToDistribute()">Distribution</button>
+    <v-btn v-on:click="goToWithdrawal()">Withdrawal</v-btn>
+    <v-btn v-on:click="goToDistribute()">Distribution</v-btn>
     <br><br>
 
     <b-card no-body class="mb-1">

@@ -153,7 +153,7 @@ export default {
 
     async makeDistribution(amount, beneficiary){
         console.log(beneficiary);
-        const url = "http://localhost:3001/api/org.acme.charity.Distribute";
+        const url = "http://localhost:3002/api/org.acme.charity.Distribute";
         console.log("org.acme.charity.Beneficiary#"+beneficiary);
         var documentID_num = 'B' +Math.floor((Math.random() * 99999) + 10000).toString();
         await axios.post(url,{"amount":amount, "documentID": documentID_num,"beneficiary": "org.acme.charity.Beneficiary#"+beneficiary}).then(function(status){ 

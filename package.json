@@ -11,8 +11,11 @@
     "axios": "^0.18.0",
     "bootstrap-vue": "^2.0.0-rc.16",
     "firebase": "^5.9.1",
+    "material-design-icons-iconfont": "^4.0.5",
+    "v-flex": "0.0.9",
     "vue": "^2.6.6",
     "vue-axios": "^2.1.4",
+    "vue-material-design-icons": "^3.1.0",
     "vue-router": "^3.0.2",
     "vuefire": "^1.4.5",
     "vuetify": "^1.5.7"
